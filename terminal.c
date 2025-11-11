@@ -88,15 +88,14 @@ void rd_canvas_to_terminal(){
   
 }
 
-bool poll_char(char c) {
+uint8_t poll_key() {
     struct termios oldt, newt;
     tcgetattr(STDIN_FILENO, &oldt);
     newt = oldt;
     newt.c_lflag &= ~(ICANON | ECHO);
     tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 
-    bool quit = false;
-    
+    int ch = -1;
     struct timeval tv = {0L, 0L};
     fd_set fds;
     FD_ZERO(&fds);
@@ -104,12 +103,11 @@ bool poll_char(char c) {
 
     int ret = select(STDIN_FILENO + 1, &fds, NULL, NULL, &tv);
     if (ret > 0 && FD_ISSET(STDIN_FILENO, &fds)) {
-        int ch = getchar();
-        if (ch == c) quit = true;
+        ch = getchar();
     }
- 
+
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-    return quit;
+    return ch;  
 }
 
 void canvas_to_term(rd_canvas *c){
@@ -154,11 +152,13 @@ int main(void){
     rd_draw_rect(&canva, 30, 20, rec1.x, rec1.y, rd_red);
     rd_draw_rect(&canva, 10, 20, 40, 60, rd_green);
     canvas_to_term(&canva);
-    
-    if (poll_char('d')) Vec2transformP(&rec2, 40*dt, 0*dt);
-    else if (poll_char('a')) Vec2transformP(&rec2, -40*dt, 0*dt);
-    else if (poll_char('w')) Vec2transformP(&rec2, 0*dt, 20*dt);
-    else if (poll_char('s')) Vec2transformP(&rec2, 0*dt, -20*dt);
+
+    uint8_t key = poll_key();
+
+    if (key == 'd') Vec2transformP(&rec2, 40*dt, 0*dt);
+    else if (key == 'a') Vec2transformP(&rec2, -40*dt, 0*dt);
+    else if (key == 'w') Vec2transformP(&rec2, 0*dt, 20*dt);
+    else if (key == 's') Vec2transformP(&rec2, 0*dt, -20*dt);
   }
   // canvas_to_term(&canva);
   // rd_canvas_to_ppm(&canva, "image.ppm");
