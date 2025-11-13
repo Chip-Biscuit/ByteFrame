@@ -6,3 +6,6 @@ Examples of how it can be used in terminal and with raylib as a window provider 
   cc -o builder builder.c
   ./builder
 ```
+
+
+The idea is to just use render.h and provide your custom things you need on top of that, which is shown in renderfull.h adding a couple of helpers (some require posix)
