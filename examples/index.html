@@ -1,0 +1,38 @@
+
+<canvas id="mycanva" width=600 height=400> </canvas>
+
+
+<script>
+async function load(){ 
+  const buf = await fetch("renderer.wasm").then(r => r.arrayBuffer());
+  const { instance } = await WebAssembly.instantiate(buf, {});
+  const {
+    memory,
+    make_canvas,
+    draw_demo,
+    canvas_pixels,
+    canvas_width,
+    canvas_height
+  } = instance.exports;
+
+  const c = make_canvas(600, 400);
+  draw_demo(c);
+
+  const w = canvas_width(c);
+  const h = canvas_height(c);
+  const ptr = canvas_pixels(c);
+
+  const pixels = new Uint32Array(memory.buffer, ptr, w*h);
+
+  window.pixels = pixels;  
+  var canva = document.getElementById("mycanva");
+  var ctx = canva.getContext("2d");
+
+  const img = ctx.createImageData(w, h);
+  img.data.set(new Uint8ClampedArray(memory.buffer, ptr, w*h*4));
+  ctx.putImageData(img, 0, 0);
+}
+
+  load();
+</script>
+

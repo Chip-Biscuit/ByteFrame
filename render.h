@@ -2,8 +2,11 @@ typedef unsigned long size_t;
 typedef unsigned char uint8_t;
 typedef unsigned int uint32_t;
 
-#ifndef RD_ALLOC
+#ifndef RD_NO_STDLIB
 #include <stdlib.h>
+#endif
+
+#ifndef RD_ALLOC
 #define RD_ALLOC(size) malloc(size)
 #endif
 
