@@ -18,7 +18,7 @@ void *my_malloc(size_t size) {
 #undef RD_ALLOC
 #define RD_ALLOC(size) my_malloc(size) 
 
-#include "render.h"
+#include "../render.h"
 
 
 __attribute__((export_name("make_canvas")))
