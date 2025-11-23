@@ -1,0 +1,9 @@
+TODO:
+	- inverted triangle
+	- weird colors due to raylib canvas texture RGBA format ordering
+	- operator overloading for Vec2
+	- abstraction layer on top of raylib
+	- non-symmetrical triangle rendering issue
+	- fix out of bounds drawing
+	- port to SDL2
+	-------------------------------------------------------------------|
