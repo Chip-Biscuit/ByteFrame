@@ -68,7 +68,7 @@ namespace bf {
 			Circle();
 			Circle(Vec2 pos, float r, Color col);
 
-			void draw();
+			void draw(Canvas canva);
 			
 			Vec2 getPos() const;
 			
@@ -80,6 +80,7 @@ namespace bf {
 		private:
 			Vec2 position;
 			float radius;
+			Color col;
 	};
 
 	

@@ -312,11 +312,15 @@ namespace bf {
     
 
 
-    Circle::Circle() : position(Vec2()), radius(0.0f) {}
-    Circle::Circle(Vec2 pos, float r) : position(pos), radius(r) {} 
+    Circle::Circle() : position(Vec2()), radius(0.0f), col(Color()) {}
+    Circle::Circle(Vec2 pos, float r, Color col) : position(pos), radius(r), col(col) {} 
       // void draw(Canvas canva){
       //   canva.drawCircle(position)
       // }
+
+      void Circle::draw(Canvas canva){
+        canva.drawCircle(position.x, position.y, radius, col);
+      }      
 
 			Vec2 Circle::getPos() const {
 				return position;
