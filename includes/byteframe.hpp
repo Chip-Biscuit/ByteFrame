@@ -66,8 +66,10 @@ namespace bf {
 	class Circle {
 		public:
 			Circle();
-			Circle(Vec2 pos, float r);
+			Circle(Vec2 pos, float r, Color col);
 
+			void draw(Canvas canva);
+			
 			Vec2 getPos() const;
 			
 			float getRadius() const;
@@ -78,6 +80,7 @@ namespace bf {
 		private:
 			Vec2 position;
 			float radius;
+			Color col;
 	};
 
 	
