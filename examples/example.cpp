@@ -24,9 +24,9 @@ int main(void) {
         canva.fill(bf::WHITE);
 
 
-        canva.drawDigit(3, 150, 150, 10, bf::PURPLE);         // single "3"
-        canva.drawNumber(42, 450, 450, 15, bf::YELLOW);       // "42"
-        canva.drawNumber(123, 600, 20, 3, bf::ORANGE);       // "123" smaller
+        canva.drawDigit(3, 150, 150, 10, bf::PURPLE);         
+        canva.drawNumber(42, 450, 450, 15, bf::YELLOW);       
+        canva.drawNumber(123, 600, 20, 3, bf::ORANGE);       
 
 
         canva.drawTriangle(t1, t2, t3, bf::RED);

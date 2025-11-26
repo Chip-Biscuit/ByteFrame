@@ -1,5 +1,5 @@
 //#define _CRT_SECURE_NO_WARNINGS                                     // For chip on VS 
-#include <byteframe.hpp>
+#include "byteframe.hpp"
 #include <cstdio>
 #include <cmath>
 #include <iostream>
@@ -13,114 +13,104 @@ namespace bf {
 
     static const int DIGITS[10][GLYPH_H][GLYPH_W] = {
 
+        {
+            {0,1,1,1,0},
+            {1,0,0,0,1},
+            {1,0,0,0,1},
+            {1,0,0,0,1},
+            {1,0,0,0,1},
+            {1,0,0,0,1},
+            {0,1,1,1,0},
+        },
 
-    {
-        {0,1,1,1,0},
-        {1,0,0,0,1},
-        {1,0,0,0,1},
-        {1,0,0,0,1},
-        {1,0,0,0,1},
-        {1,0,0,0,1},
-        {0,1,1,1,0},
-    },
+        {
+            {0,0,1,0,0},
+            {0,1,1,0,0},
+            {0,0,1,0,0},
+            {0,0,1,0,0},
+            {0,0,1,0,0},
+            {0,0,1,0,0},
+            {0,1,1,1,0},
+        },
 
+        {
+            {0,1,1,1,0},
+            {1,0,0,0,1},
+            {0,0,0,0,1},
+            {0,0,0,1,0},
+            {0,0,1,0,0},
+            {0,1,0,0,0},
+            {1,1,1,1,1},
+        },
 
-    {
-        {0,0,1,0,0},
-        {0,1,1,0,0},
-        {0,0,1,0,0},
-        {0,0,1,0,0},
-        {0,0,1,0,0},
-        {0,0,1,0,0},
-        {0,1,1,1,0},
-    },
+        {
+            {0,1,1,1,0},
+            {1,0,0,0,1},
+            {0,0,0,0,1},
+            {0,0,1,1,0},
+            {0,0,0,0,1},
+            {1,0,0,0,1},
+            {0,1,1,1,0},
+        },
 
+        {
+            {0,0,0,1,0},
+            {0,0,1,1,0},
+            {0,1,0,1,0},
+            {1,0,0,1,0},
+            {1,1,1,1,1},
+            {0,0,0,1,0},
+            {0,0,0,1,0},
+        },
 
-    {
-        {0,1,1,1,0},
-        {1,0,0,0,1},
-        {0,0,0,0,1},
-        {0,0,0,1,0},
-        {0,0,1,0,0},
-        {0,1,0,0,0},
-        {1,1,1,1,1},
-    },
+        {
+            {1,1,1,1,1},
+            {1,0,0,0,0},
+            {1,1,1,1,0},
+            {0,0,0,0,1},
+            {0,0,0,0,1},
+            {1,0,0,0,1},
+            {0,1,1,1,0},
+        },
 
+        {
+            {0,0,1,1,0},
+            {0,1,0,0,0},
+            {1,0,0,0,0},
+            {1,1,1,1,0},
+            {1,0,0,0,1},
+            {1,0,0,0,1},
+            {0,1,1,1,0},
+        },
 
-    {
-        {0,1,1,1,0},
-        {1,0,0,0,1},
-        {0,0,0,0,1},
-        {0,0,1,1,0},
-        {0,0,0,0,1},
-        {1,0,0,0,1},
-        {0,1,1,1,0},
-    },
+        {
+            {1,1,1,1,1},
+            {0,0,0,0,1},
+            {0,0,0,1,0},
+            {0,0,1,0,0},
+            {0,1,0,0,0},
+            {0,1,0,0,0},
+            {0,1,0,0,0},
+        },
 
+        {
+            {0,1,1,1,0},
+            {1,0,0,0,1},
+            {1,0,0,0,1},
+            {0,1,1,1,0},
+            {1,0,0,0,1},
+            {1,0,0,0,1},
+            {0,1,1,1,0},
+        },
 
-    {
-        {0,0,0,1,0},
-        {0,0,1,1,0},
-        {0,1,0,1,0},
-        {1,0,0,1,0},
-        {1,1,1,1,1},
-        {0,0,0,1,0},
-        {0,0,0,1,0},
-    },
-
-
-    {
-        {1,1,1,1,1},
-        {1,0,0,0,0},
-        {1,1,1,1,0},
-        {0,0,0,0,1},
-        {0,0,0,0,1},
-        {1,0,0,0,1},
-        {0,1,1,1,0},
-    },
-
-
-    {
-        {0,0,1,1,0},
-        {0,1,0,0,0},
-        {1,0,0,0,0},
-        {1,1,1,1,0},
-        {1,0,0,0,1},
-        {1,0,0,0,1},
-        {0,1,1,1,0},
-    },
-
-
-    {
-        {1,1,1,1,1},
-        {0,0,0,0,1},
-        {0,0,0,1,0},
-        {0,0,1,0,0},
-        {0,1,0,0,0},
-        {0,1,0,0,0},
-        {0,1,0,0,0},
-    },
-
-
-    {
-        {0,1,1,1,0},
-        {1,0,0,0,1},
-        {1,0,0,0,1},
-        {0,1,1,1,0},
-        {1,0,0,0,1},
-        {1,0,0,0,1},
-        {0,1,1,1,0},
-    },
-
-
-    {
-        {0,1,1,1,0},
-        {1,0,0,0,1},
-        {1,0,0,0,1},
-        {0,1,1,1,1},
-        {0,0,0,0,1},
-        {0,0,0,1,0},
-        {0,1,1,0,0},
+        {
+            {0,1,1,1,0},
+            {1,0,0,0,1},
+            {1,0,0,0,1},
+            {0,1,1,1,1},
+            {0,0,0,0,1},
+            {0,0,0,1,0},
+            {0,1,1,0,0},
         },
 
     };
@@ -135,7 +125,6 @@ namespace bf {
     Color::Color(uint8_t rr, uint8_t gg, uint8_t bb, uint8_t aa)
         : r(rr), g(gg), b(bb), a(aa) {
     }
-
 
     uint32_t Color::toU32() {
 
@@ -152,6 +141,9 @@ namespace bf {
         c.b = (rgba >> 16) & 0xFF;
         c.a = (rgba >> 24) & 0xFF;
         return c;
+    }
+
+    Canvas::Canvas() : width(0), height(0) {
     }
 
     Canvas::Canvas(size_t w, size_t h) : width(w), height(h) {
@@ -181,6 +173,7 @@ namespace bf {
 
     void Canvas::rd_canvas_to_ppm(const char* filename) {
         FILE* f = fopen(filename, "wb");
+        if (!f) return;
         fprintf(f, "P6\n%zu %zu\n255\n", width, height);
         for (size_t i = 0; i < height * width; ++i) {
             Color c = Color::toColor(pixels[i]);
@@ -192,24 +185,24 @@ namespace bf {
     }
 
     void Canvas::drawEllipse(int cx, int cy, float rx, float ry, Color col) {
-        int minx = cx - rx;
-        int miny = cy - ry;
-        int maxx = cx + rx;
-        int maxy = cy + ry;
+        int minx = cx - static_cast<int>(rx);
+        int miny = cy - static_cast<int>(ry);
+        int maxx = cx + static_cast<int>(rx);
+        int maxy = cy + static_cast<int>(ry);
         if (minx < 0)
             minx = 0;
         if (miny < 0)
             miny = 0;
         if (maxx >= (int)width)
-            maxx = width - 1;
+            maxx = (int)width - 1;
         if (maxy >= (int)height)
-            maxy = height - 1;
+            maxy = (int)height - 1;
         for (int y = miny; y <= maxy; y++) {
             for (int x = minx; x <= maxx; x++) {
                 float dx = x - cx;
                 float dy = y - cy;
                 if ((dx * dx) / (rx * rx) + (dy * dy) / (ry * ry) <= 1.0f)
-                    drawPixel(x, y, col);
+                    drawPixel((size_t)x, (size_t)y, col);
             }
         }
     }
@@ -233,7 +226,7 @@ namespace bf {
     void Canvas::drawTriangle(Vec2 v1, Vec2 v2, Vec2 v3, Color col) {
         int xmin = std::ceil(v1.x);
         int xmax = std::floor(v3.x);
-        Vec2 mr = { .x = (v1.x + v3.x) * 0.5f };
+        Vec2 mr = { .x = (v1.x + v3.x) * 0.5f, .y = 0.0f };
         for (int x = xmin; x <= xmax; ++x) {
             float hr;
             if (x <= mr.x)
@@ -243,7 +236,7 @@ namespace bf {
             float ymin = v1.y;
             float ymax = hr;
             for (int y = std::ceil(ymin); y <= std::floor(ymax); ++y)
-                drawPixel(x, y, col);
+                drawPixel((size_t)x, (size_t)y, col);
         }
     }
 
@@ -261,7 +254,6 @@ namespace bf {
                 int baseX = x + colIdx * scale;
                 int baseY = y + row * scale;
 
-
                 for (int dy = 0; dy < scale; ++dy) {
                     int py = baseY + dy;
                     if (py < 0) continue;
@@ -269,7 +261,6 @@ namespace bf {
                     for (int dx = 0; dx < scale; ++dx) {
                         int px = baseX + dx;
                         if (px < 0) continue;
-
 
                         drawPixel(static_cast<size_t>(px),
                             static_cast<size_t>(py),
@@ -309,93 +300,121 @@ namespace bf {
         return a.y + slope * (x - a.x);
     }
 
-    
 
+    Circle::Circle() : position(Vec2{ 0.0f, 0.0f }), radius(0.0f), col(Color()) {}
+    Circle::Circle(Vec2 pos, float r, Color col) : position(pos), radius(r), col(col) {}
 
-    Circle::Circle() : position(Vec2()), radius(0.0f), col(Color()) {}
-    Circle::Circle(Vec2 pos, float r, Color col) : position(pos), radius(r), col(col) {} 
-      // void draw(Canvas canva){
-      //   canva.drawCircle(position)
-      // }
+    // void draw(Canvas canva){
+    //   canva.drawCircle(position)
+    // }
 
-      void Circle::draw(Canvas canva){
-        canva.drawCircle(position.x, position.y, radius, col);
-      }      
+    void Circle::draw(Canvas& canva) const {
+        canva.drawCircle(
+            static_cast<int>(position.x),
+            static_cast<int>(position.y),
+            radius,
+            col
+        );
+    }
 
-			Vec2 Circle::getPos() const {
-				return position;
-			}
-			
-			float Circle::getRadius() const {
-				return radius;
-			}
+    Vec2 Circle::getPos() const {
+        return position;
+    }
 
+    float Circle::getRadius() const {
+        return radius;
+    }
 
-		  bool Circle::collidesWith(const Rectangle& rect) const {
-			  return rect.collidesWith(*this);
-		  }
+    void Circle::setPos(float x, float y) {
+        position.x = x;
+        position.y = y;
+    }
 
-		// private:
-		// 	Vec2 position;
-		// 	float radius;
-		//
+    void Circle::move(float dx, float dy) {
+        position.x += dx;
+        position.y += dy;
+    }
 
-	
-      Rectangle::Rectangle() : x(0), y(0), w(0), h(0), col(Color()) {}
-      Rectangle::Rectangle(float x, float y, float w, float h, Color col) : x(x), y(y), w(w), h(h), col(col) {}
+    bool Circle::collidesWith(const Rectangle& rect) const {
+        return rect.collidesWith(*this);
+    }
 
-			float Rectangle::getX() const {
-				return x;
-			}
+    // private:
+    //  Vec2 position;
+    //  float radius;
+    //
 
-			float Rectangle::getY() const {
-				return y;
-			}
+   
 
-			float Rectangle::getW() const {
-				return w;
-			}
+    Rectangle::Rectangle() : x(0), y(0), w(0), h(0), col(Color()) {}
+    Rectangle::Rectangle(float x, float y, float w, float h, Color col) : x(x), y(y), w(w), h(h), col(col) {}
 
-			float Rectangle::getH() const {
-				return h;
-			}
+    float Rectangle::getX() const {
+        return x;
+    }
 
-			void Rectangle::draw(Canvas canva){
-				canva.drawRect(w, h, x, y, col);
-			}
-			
-			bool Rectangle::collidesWith(const Rectangle& other) const {
-				if (x < other.x + other.w &&
-						x + w > other.w &&
-						y < other.y + other.h &&
-						y + h > other.y) return true;
-				return false;
-			}
+    float Rectangle::getY() const {
+        return y;
+    }
 
-			bool Rectangle::collidesWith(const Circle& b) const {
-    		float px = x;
-    		float py = y;
-    		float pw = w;
-    		float ph = h;
+    float Rectangle::getW() const {
+        return w;
+    }
 
-    
-    		float closestX = std::max(px, std::min(b.getPos().x, px + pw));
-    		float closestY = std::max(py, std::min(b.getPos().y, py + ph));
+    float Rectangle::getH() const {
+        return h;
+    }
 
-    		float dx = b.getPos().x - closestX;
-    		float dy = b.getPos().y - closestY;
-    		float dist2 = dx * dx + dy * dy;
+    void Rectangle::setPos(float nx, float ny) {
+        x = nx;
+        y = ny;
+    }
 
-    		return dist2 <= b.getRadius() * b.getRadius();
-			}
-			
-		// private:
-		// 	float x, y, w, h;
-		// 	Color col;
-		//
-						
+    void Rectangle::move(float dx, float dy) {
+        x += dx;
+        y += dy;
+    }
 
+    void Rectangle::draw(Canvas& canva) const {
+        canva.drawRect(
+            static_cast<size_t>(w),
+            static_cast<size_t>(h),
+            static_cast<size_t>(x),
+            static_cast<size_t>(y),
+            col
+        );
+    }
 
+    bool Rectangle::collidesWith(const Rectangle& other) const {
+        if (x < other.x + other.w &&
+            x + w > other.x &&
+            y < other.y + other.h &&
+            y + h > other.y) return true;
+        return false;
+    }
 
+    bool Rectangle::collidesWith(const Circle& b) const {
+        float px = x;
+        float py = y;
+        float pw = w;
+        float ph = h;
 
-}
+        float cx = b.getPos().x;
+        float cy = b.getPos().y;
+
+        float closestX = std::max(px, std::min(cx, px + pw));
+        float closestY = std::max(py, std::min(cy, py + ph));
+
+        float dx = cx - closestX;
+        float dy = cy - closestY;
+        float dist2 = dx * dx + dy * dy;
+
+        return dist2 <= b.getRadius() * b.getRadius();
+    }
+
+    // private:
+    //  float x, y, w, h;
+    //  Color col;
+    //  //
+
+} 
