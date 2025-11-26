@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS                                     // For chip on VS 
+//#define _CRT_SECURE_NO_WARNINGS                                     // For chip on VS 
 #include "byteframe.hpp"
 #include <cstdio>
 #include <cmath>
