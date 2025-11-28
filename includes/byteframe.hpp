@@ -11,6 +11,20 @@ namespace bf {
 
     struct Vec2 {
         float x, y;
+
+        Vec2(float x=0.0f, float y=0.0f) : x(x), y(y) {}
+
+        inline Vec2 operator*(float scalar) const {
+          return { x * scalar, y * scalar };
+        }
+
+        inline Vec2 operator*(const Vec2& other) const {
+          return { x * other.x, y * other.y };
+        }
+
+        friend inline Vec2 operator*(float scalar, const Vec2& v){
+          return v * scalar;
+        }
     };
 
     class Color {
