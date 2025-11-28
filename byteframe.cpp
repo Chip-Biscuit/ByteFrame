@@ -226,7 +226,7 @@ namespace bf {
     void Canvas::drawTriangle(Vec2 v1, Vec2 v2, Vec2 v3, Color col) {
         int xmin = std::ceil(v1.x);
         int xmax = std::floor(v3.x);
-        Vec2 mr = { .x = (v1.x + v3.x) * 0.5f, .y = 0.0f };
+        Vec2 mr{(v1.x + v3.x) * 0.5f, 0.0f}; 
         for (int x = xmin; x <= xmax; ++x) {
             float hr;
             if (x <= mr.x)
